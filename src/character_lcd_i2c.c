@@ -37,3 +37,19 @@ void lcd_write_data(character_lcd_t *display, uint8_t data)
     };
     lcd_write(display->address, data_frame, LCD_I2C_BYTES_PER_WRITE); 
 }
+
+/**
+ * @brief This is an auxiliary function used during the HD44780 initialization
+ * process. After power up the chip the data interface is 8-bit wide.
+ * @param display Pointer to a character_lcd struct.
+ * @param instruction Instruction to be written.
+ */
+void lcd_write_instruction_8bits(character_lcd_t *display,
+                                 enum lcd_instruction instruction)
+{
+    uint8_t data_frame[LCD_I2C_BYTES_PER_WRITE / 2] = {
+        LCD_START_INSTRUCTION_REGISTER_WRITE | HIGH_NIBBLE(instruction),
+        LCD_END_INSTRUCTION_REGISTER_WRITE | HIGH_NIBBLE(instruction)
+    };
+    lcd_write(display->address, data_frame, LCD_I2C_BYTES_PER_WRITE / 2);
+}

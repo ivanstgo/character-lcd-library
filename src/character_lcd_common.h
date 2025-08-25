@@ -27,7 +27,7 @@
 typedef struct lcd_cgram_address
 {
     /** @brief CGRAM address is 6-bit wide */
-    uint8_t address : 6;
+    uint8_t value : 6;
 } lcd_cgram_address_t;
 
 /**
@@ -36,7 +36,7 @@ typedef struct lcd_cgram_address
 typedef struct lcd_ddram_address
 {
     /** @brief DDRAM address is 7-bit wide */
-    uint8_t address : 7;
+    uint8_t value : 7;
 } lcd_ddram_address_t;
 
 /**
